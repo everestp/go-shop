@@ -35,8 +35,8 @@ func main() {
 	defer mainDb.Close()
 	gin.SetMode(cfg.Server.GinMode)
 
-	srv := server.New(cfg , db , log)
-		router := srv.SetupRoutes()
+	srv := server.New(cfg, db, &log)
+	router := srv.SetupRoutes()
 
 	httpServer := &http.Server{
 		Addr:         fmt.Sprintf(":%s", cfg.Server.Port),
@@ -51,7 +51,7 @@ func main() {
 			log.Fatal().Err(err).Msg("failed to start http server")
 		}
 	}()
-		quit := make(chan os.Signal, 1)
+	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
 
@@ -63,7 +63,6 @@ func main() {
 		log.Error().Err(err).Msg("failed to shutdown http server")
 		return
 	}
-
 
 	log.Info().Msg("starting server")
 
