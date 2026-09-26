@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/everestp/go-shop/internal/config"
-	"github.com/everestp/go-shop/internal/logger"
+	
 	"github.com/gin-gonic/gin"
 	"github.com/rs/zerolog"
 	"gorm.io/gorm"
