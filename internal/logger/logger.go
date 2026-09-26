@@ -1,4 +1,3 @@
-
 package logger
 
 import (
@@ -19,4 +18,3 @@ func New() zerolog.Logger {
 	return log.Logger
 
 }
-   
