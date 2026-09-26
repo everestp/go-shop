@@ -1,9 +1,33 @@
 package main
 
-import "fmt"
+import (
+
+
+	"github.com/everestp/go-shop/internal/config"
+	"github.com/everestp/go-shop/internal/database"
+	"github.com/everestp/go-shop/internal/logger"
+	"github.com/gin-gonic/gin"
+)
 
 
 
 func main(){
-	fmt.Print("Hello wo")
+	log := logger.New()
+	cfg ,err := config.Load()
+	if err != nil{
+		log.Fatal().Err(err).Msg("Failed to laod config")
+	}
+
+	db , err := database.New(&cfg.Database)
+	if err != nil {
+		log.Fatal().Err(err).Msg("failed to connect to database")
+	}
+	mainDb , err := db.DB()
+	if err != nil{
+		log.Fatal().Err(err).Msg("Failed to get database connection")
+	}
+	defer mainDb.Close()
+	gin.SetMode(cfg.Server.GinMode)
+	log.Info().Msg("starting server")
+
 }
