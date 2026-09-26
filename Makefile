@@ -40,10 +40,10 @@ docs-generate:
 	swag init -g cmd/api/main.go -o docs --parseDependency --parseInternal --exclude .git,docs,docker,db
 
 migrate-up:
-	migrate -path db/migrations -database "postgresql://postgres:password@localhost:5432/ecommerce_shop?sslmode=disable" up
+	migrate -path db/migrations -database "postgresql://neondb_owner:npg_k0WD6GpeTSui@ep-dawn-leaf-ad26dewr-pooler.c-2.us-east-1.aws.neon.tech/go-shop?sslmode=require&channel_binding=require" up
 
 migrate-down:
-	migrate -path db/migrations -database "postgresql://postgres:password@localhost:5432/ecommerce_shop?sslmode=disable" down
+	migrate -path db/migrations -database "postgresql://neondb_owner:npg_k0WD6GpeTSui@ep-dawn-leaf-ad26dewr-pooler.c-2.us-east-1.aws.neon.tech/go-shop?sslmode=require&channel_binding=require" down
 
 docker-up:
 	docker compose -f docker/docker-compose.yml up -d
